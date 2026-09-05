@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="260dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="end"
+    android:background="@drawable/background_control_editor"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/customctrl_edit_controls"
+            android:textColor="@color/customctrl_text_primary"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="8dp"
+            android:background="@color/customctrl_divider" />
+
+        <!-- Add Items Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD ELEMENTS"
+            android:textColor="@color/customctrl_text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/menu_add_button"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_item"
+            android:text="@string/customctrl_addbutton"
+            android:textColor="@color/customctrl_text_primary" />
+
+        <Button
+            android:id="@+id/menu_add_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_item"
+            android:text="@string/customctrl_addbutton_drawer"
+            android:textColor="@color/customctrl_text_primary" />
+
+        <Button
+            android:id="@+id/menu_add_joystick"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_item"
+            android:text="@string/customctrl_addbutton_joystick"
+            android:textColor="@color/customctrl_text_primary" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/customctrl_divider" />
+
+        <!-- Profile / Save Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PROFILES &amp; LAYOUT"
+            android:textColor="@color/customctrl_text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/menu_save"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_item"
+            android:text="@string/customctrl_save"
+            android:textColor="@color/customctrl_text_primary" />
+
+        <Button
+            android:id="@+id/menu_load"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_item"
+            android:text="@string/customctrl_load"
+            android:textColor="@color/customctrl_text_primary" />
+
+        <Button
+            android:id="@+id/menu_reset_default"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_item"
+            android:text="@string/customctrl_reset_default"
+            android:textColor="@color/customctrl_text_secondary" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/customctrl_divider" />
+
+        <!-- Exit Section -->
+        <Button
+            android:id="@+id/menu_save_and_exit"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/background_item"
+            android:text="@string/customctrl_save_and_exit"
+            android:textColor="@color/customctrl_accent"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/menu_exit_without_saving"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_item"
+            android:text="@string/customctrl_exit_without_saving"
+            android:textColor="@color/customctrl_danger" />
+
+    </LinearLayout>
+</ScrollView>

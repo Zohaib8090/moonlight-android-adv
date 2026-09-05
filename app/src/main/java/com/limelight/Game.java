@@ -13,6 +13,8 @@ import com.limelight.binding.input.driver.UsbDriverService;
 import com.limelight.binding.input.evdev.EvdevListener;
 import com.limelight.binding.input.touch.TouchContext;
 import com.limelight.binding.input.virtual_controller.VirtualController;
+import com.limelight.binding.input.customcontrols.ControlLayout;
+import com.limelight.binding.input.customcontrols.bridge.MoonlightControlBridge;
 import com.limelight.binding.video.CrashListener;
 import com.limelight.binding.video.MediaCodecDecoderRenderer;
 import com.limelight.binding.video.MediaCodecHelper;
@@ -112,6 +114,7 @@ public class Game extends Activity implements SurfaceHolder.Callback,
     private ControllerHandler controllerHandler;
     private KeyboardTranslator keyboardTranslator;
     private VirtualController virtualController;
+    private ControlLayout customControlLayout;
 
     private PreferenceConfiguration prefConfig;
     private SharedPreferences tombstonePrefs;
@@ -505,12 +508,16 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         }
 
         if (prefConfig.onscreenController) {
-            // create virtual onscreen controller
-            virtualController = new VirtualController(controllerHandler,
-                    (FrameLayout)streamView.getParent(),
-                    this);
-            virtualController.refreshLayout();
-            virtualController.show();
+            FrameLayout parentLayout = (FrameLayout) streamView.getParent();
+            customControlLayout = new ControlLayout(this);
+            customControlLayout.setStreamSurface(streamView);
+            MoonlightControlBridge bridge = new MoonlightControlBridge(this, conn, controllerHandler);
+            customControlLayout.setBridge(bridge);
+            customControlLayout.loadLayoutFromPreferences();
+            parentLayout.addView(customControlLayout, new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.MATCH_PARENT
+            ));
         }
 
         if (prefConfig.usbDriver) {
@@ -594,6 +601,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
                 if (virtualController != null) {
                     virtualController.hide();
                 }
+                if (customControlLayout != null) {
+                    customControlLayout.setControlVisible(false);
+                }
 
                 performanceOverlayView.setVisibility(View.GONE);
                 notificationOverlayView.setVisibility(View.GONE);
@@ -611,6 +621,9 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
                 if (virtualController != null) {
                     virtualController.show();
+                }
+                if (customControlLayout != null) {
+                    customControlLayout.setControlVisible(true);
                 }
 
                 if (prefConfig.enablePerfOverlay) {
@@ -1504,6 +1517,24 @@ public class Game extends Activity implements SurfaceHolder.Callback,
         inputManager.toggleSoftInput(0, 0);
     }
 
+    public void toggleMouseMode() {
+        LimeLog.info("Toggle mouse mode from custom controls");
+        if (inputCaptureProvider != null) {
+            cursorVisible = !cursorVisible;
+            if (cursorVisible) {
+                inputCaptureProvider.showCursor();
+            } else {
+                inputCaptureProvider.hideCursor();
+            }
+        }
+    }
+
+    public void openStreamMenu() {
+        LimeLog.info("Open stream menu from custom controls");
+        // Open back/exit or options
+        runOnUiThread(this::onBackPressed);
+    }
+
     private byte getLiTouchTypeFromEvent(MotionEvent event) {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
@@ -1993,9 +2024,10 @@ public class Game extends Activity implements SurfaceHolder.Callback,
             // This case is for fingers
             else
             {
-                if (virtualController != null &&
+                if ((virtualController != null &&
                         (virtualController.getControllerMode() == VirtualController.ControllerMode.MoveButtons ||
-                         virtualController.getControllerMode() == VirtualController.ControllerMode.ResizeButtons)) {
+                         virtualController.getControllerMode() == VirtualController.ControllerMode.ResizeButtons)) ||
+                        (customControlLayout != null && customControlLayout.getModifiable())) {
                     // Ignore presses when the virtual controller is being configured
                     return true;
                 }

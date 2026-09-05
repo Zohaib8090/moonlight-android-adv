@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edit_scroll_view"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical|start"
+    android:background="@drawable/background_control_editor"
+    android:fadeScrollbars="false"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:id="@+id/edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title / Header -->
+        <TextView
+            android:id="@+id/edit_dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/customctrl_edit_controls"
+            android:textColor="@color/customctrl_text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="8dp"
+            android:background="@color/customctrl_divider" />
+
+        <!-- Name Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/customctrl_button_name"
+            android:textColor="@color/customctrl_text_secondary"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/editName_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/background_edit_box"
+            android:hint="Button Text"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:textColor="@color/customctrl_text_primary"
+            android:textColorHint="@color/customctrl_text_secondary"
+            android:textSize="14sp" />
+
+        <!-- Size Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/customctrl_size"
+            android:textColor="@color/customctrl_text_secondary"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editSize_editTextX"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/background_edit_box"
+                android:gravity="center"
+                android:hint="Width"
+                android:inputType="numberDecimal"
+                android:textColor="@color/customctrl_text_primary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:text="✕"
+                android:textColor="@color/customctrl_text_secondary" />
+
+            <EditText
+                android:id="@+id/editSize_editTextY"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/background_edit_box"
+                android:gravity="center"
+                android:hint="Height"
+                android:inputType="numberDecimal"
+                android:textColor="@color/customctrl_text_primary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Mapping Section: 2x2 Grid matching ZalithLauncher -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/customctrl_mapping"
+            android:textColor="@color/customctrl_text_secondary"
+            android:textSize="13sp" />
+
+        <!-- Row 1: Mapping 1 + Mapping 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/mapping_1_textview"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_item"
+                android:gravity="center"
+                android:hint="@string/customctrl_mapping_hint"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/customctrl_text_primary"
+                android:textColorHint="@color/customctrl_text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="6dp"
+                android:text="+"
+                android:textColor="@color/customctrl_text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/mapping_2_textview"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_item"
+                android:gravity="center"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="(None)"
+                android:textColor="@color/customctrl_text_primary"
+                android:textColorHint="@color/customctrl_text_secondary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Row 2: Mapping 3 + Mapping 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/mapping_3_textview"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_item"
+                android:gravity="center"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="(None)"
+                android:textColor="@color/customctrl_text_primary"
+                android:textColorHint="@color/customctrl_text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="6dp"
+                android:text="+"
+                android:textColor="@color/customctrl_text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/mapping_4_textview"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_item"
+                android:gravity="center"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="(None)"
+                android:textColor="@color/customctrl_text_primary"
+                android:textColorHint="@color/customctrl_text_secondary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Orientation (for drawers) -->
+        <TextView
+            android:id="@+id/editOrientation_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/customctrl_orientation"
+            android:textColor="@color/customctrl_text_secondary"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/editOrientation_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/background_item"
+            android:visibility="gone" />
+
+        <!-- Toggle Switch -->
+        <Switch
+            android:id="@+id/checkboxToggle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/customctrl_toggle"
+            android:textColor="@color/customctrl_text_primary" />
+
+        <!-- Mouse Pass Through Switch -->
+        <Switch
+            android:id="@+id/checkboxPassThrough"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/customctrl_passthru"
+            android:textColor="@color/customctrl_text_primary" />
+
+        <!-- Swipeable Switch -->
+        <Switch
+            android:id="@+id/checkboxSwipeable"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/customctrl_swipeable"
+            android:textColor="@color/customctrl_text_primary" />
+
+        <!-- Colors -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_select_bg_color"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_item"
+                android:text="@string/customctrl_background_color"
+                android:textColor="@color/customctrl_text_primary"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btn_select_stroke_color"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_item"
+                android:text="@string/customctrl_stroke_color"
+                android:textColor="@color/customctrl_text_primary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Stroke Width Slider -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/customctrl_stroke_width"
+                android:textColor="@color/customctrl_text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/editStrokeWidth_textView_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1dp"
+                android:textColor="@color/customctrl_text_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/editStrokeWidth_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="10" />
+
+        <!-- Corner Radius Slider -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/customctrl_corner_radius"
+                android:textColor="@color/customctrl_text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/editCornerRadius_textView_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20%"
+                android:textColor="@color/customctrl_text_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/editCornerRadius_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+
+        <!-- Opacity Slider -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/customctrl_button_opacity"
+                android:textColor="@color/customctrl_text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/editAlpha_textView_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100%"
+                android:textColor="@color/customctrl_text_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/editAlpha_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+
+        <!-- Action Buttons (Close / Done) -->
+        <Button
+            android:id="@+id/btn_dialog_done"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/background_item"
+            android:text="Done"
+            android:textColor="@color/customctrl_accent"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

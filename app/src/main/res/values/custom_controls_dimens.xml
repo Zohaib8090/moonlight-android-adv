@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="customctrl_dialog_width">320dp</dimen>
+    <dimen name="customctrl_handle_size">28dp</dimen>
+    <dimen name="customctrl_action_row_height">44dp</dimen>
+    <dimen name="customctrl_padding_small">6dp</dimen>
+    <dimen name="customctrl_padding_medium">12dp</dimen>
+    <dimen name="customctrl_padding_large">16dp</dimen>
+    <dimen name="customctrl_corner_radius">8dp</dimen>
+</resources>

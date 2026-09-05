@@ -1,0 +1,73 @@
+<resources>
+    <!-- Custom Controls Strings -->
+    <string name="customctrl_title">Custom Controls</string>
+    <string name="customctrl_edit_controls">Edit Controls</string>
+    <string name="customctrl_addbutton">Add Button</string>
+    <string name="customctrl_addbutton_drawer">Add Drawer</string>
+    <string name="customctrl_addbutton_joystick">Add Joystick</string>
+    <string name="customctrl_addsubbutton">Add Sub-Button</string>
+    <string name="customctrl_export">Save &amp; Export</string>
+    <string name="customctrl_save">Save</string>
+    <string name="customctrl_load">Load Profile</string>
+    <string name="customctrl_save_and_exit">Save &amp; Exit</string>
+    <string name="customctrl_exit_without_saving">Exit Without Saving</string>
+    <string name="customctrl_reset_default">Reset to Default</string>
+
+    <string name="customctrl_button_name">Button Name</string>
+    <string name="customctrl_size">Size (Width x Height)</string>
+    <string name="customctrl_mapping">Key &amp; Action Mapping</string>
+    <string name="customctrl_mapping_hint">Tap to assign key/mouse action</string>
+    <string name="customctrl_orientation">Orientation</string>
+    <string name="customctrl_toggle">Toggle Mode (Latch)</string>
+    <string name="customctrl_passthru">Mouse Pass-Through</string>
+    <string name="customctrl_swipeable">Swipeable</string>
+    <string name="customctrl_background_color">Background Color</string>
+    <string name="customctrl_stroke_color">Border Color</string>
+    <string name="customctrl_stroke_width">Border Width</string>
+    <string name="customctrl_corner_radius">Corner Radius</string>
+    <string name="customctrl_button_opacity">Opacity</string>
+    <string name="customctrl_delete_confirm">Delete this button?</string>
+
+    <string name="customctrl_joystick_mode">Joystick Mode</string>
+    <string name="customctrl_joystick_wasd">WASD Keyboard</string>
+    <string name="customctrl_joystick_gamepad_left">Gamepad Left Stick</string>
+    <string name="customctrl_joystick_gamepad_right">Gamepad Right Stick</string>
+
+    <string name="percent_format">%d%%</string>
+
+    <!-- Special key action names -->
+    <string name="action_mouse_left">Left Click</string>
+    <string name="action_mouse_right">Right Click</string>
+    <string name="action_mouse_middle">Middle Click</string>
+    <string name="action_mouse_scroll_up">Scroll Up</string>
+    <string name="action_mouse_scroll_down">Scroll Down</string>
+    <string name="action_keyboard">Toggle Keyboard</string>
+    <string name="action_toggle_ctrl">Toggle Controls Visibility</string>
+    <string name="action_virtual_mouse">Toggle Mouse Mode</string>
+    <string name="action_menu">Moonlight Menu</string>
+
+    <!-- Gamepad special actions -->
+    <string name="action_gamepad_a">Gamepad A</string>
+    <string name="action_gamepad_b">Gamepad B</string>
+    <string name="action_gamepad_x">Gamepad X</string>
+    <string name="action_gamepad_y">Gamepad Y</string>
+    <string name="action_gamepad_dpad_up">D-Pad Up</string>
+    <string name="action_gamepad_dpad_down">D-Pad Down</string>
+    <string name="action_gamepad_dpad_left">D-Pad Left</string>
+    <string name="action_gamepad_dpad_right">D-Pad Right</string>
+    <string name="action_gamepad_lb">Left Bumper (LB)</string>
+    <string name="action_gamepad_rb">Right Bumper (RB)</string>
+    <string name="action_gamepad_lt">Left Trigger (LT)</string>
+    <string name="action_gamepad_rt">Right Trigger (RT)</string>
+    <string name="action_gamepad_ls">Left Stick Click (L3)</string>
+    <string name="action_gamepad_rs">Right Stick Click (R3)</string>
+    <string name="action_gamepad_start">Start</string>
+    <string name="action_gamepad_select">Select / Back</string>
+
+    <!-- Drawer Orientations -->
+    <string name="orientation_right">Right</string>
+    <string name="orientation_left">Left</string>
+    <string name="orientation_up">Up</string>
+    <string name="orientation_down">Down</string>
+    <string name="orientation_free">Free (Custom Position)</string>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <color name="customctrl_bg_editor">#E6151515</color>
+    <color name="customctrl_bg_item">#2C2C2C</color>
+    <color name="customctrl_bg_item_selected">#3D3D3D</color>
+    <color name="customctrl_accent">#4D90FE</color>
+    <color name="customctrl_text_primary">#FFFFFF</color>
+    <color name="customctrl_text_secondary">#9E9E9E</color>
+    <color name="customctrl_divider">#26FFFFFF</color>
+    <color name="customctrl_danger">#E53935</color>
+    <color name="customctrl_dialog_bg">#1E1E1E</color>
+    <color name="customctrl_btn_bg">#2A2A2A</color>
+    <color name="customctrl_btn_bg_selected">#454545</color>
+</resources>

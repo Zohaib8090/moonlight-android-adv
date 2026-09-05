@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="@dimen/customctrl_corner_radius" />
+    <padding
+        android:bottom="@dimen/customctrl_padding_medium"
+        android:left="@dimen/customctrl_padding_medium"
+        android:right="@dimen/customctrl_padding_medium"
+        android:top="@dimen/customctrl_padding_medium" />
+    <solid android:color="@color/customctrl_bg_editor" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/customctrl_divider" />
+</shape>
