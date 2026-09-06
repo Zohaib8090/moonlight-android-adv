@@ -2,18 +2,12 @@ package com.limelight.binding.input.customcontrols;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
-
-import com.limelight.R;
 import com.limelight.binding.input.customcontrols.bridge.MoonlightControlBridge;
 import com.limelight.binding.input.customcontrols.editor.ActionRow;
-import com.limelight.binding.input.customcontrols.editor.ControlHandleView;
 import com.limelight.binding.input.customcontrols.editor.ControlMenuDialog;
-import com.limelight.binding.input.customcontrols.editor.EditControlPopup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +20,8 @@ public class ControlLayout extends FrameLayout {
     private boolean mModifiable = false;
     private boolean mControlVisible = true;
 
-    private EditControlPopup mControlPopup = null;
-    private ControlHandleView mHandleView = null;
-    public ActionRow mActionRow = null;
     private ControlMenuDialog mMenuDialog = null;
-    private ImageView mBtnToggleEditor = null;
+    private ActionRow mActionRow = null;
 
     public ControlLayout(Context ctx) {
         super(ctx);
@@ -43,43 +34,9 @@ public class ControlLayout extends FrameLayout {
     }
 
     private void init() {
+        setBackgroundColor(android.graphics.Color.TRANSPARENT);
         setClipChildren(false);
         setClipToPadding(false);
-
-        // Edit Mode Toggle Button (small gear at top left)
-        mBtnToggleEditor = new ImageView(getContext());
-        int size = (int) (32 * getResources().getDisplayMetrics().density);
-        int pad = (int) (6 * getResources().getDisplayMetrics().density);
-        LayoutParams lp = new LayoutParams(size, size);
-        lp.gravity = Gravity.TOP | Gravity.START;
-        lp.setMargins(16, 16, 0, 0);
-        mBtnToggleEditor.setLayoutParams(lp);
-        mBtnToggleEditor.setPadding(pad, pad, pad, pad);
-        mBtnToggleEditor.setImageDrawable(getResources().getDrawable(R.drawable.ic_settings));
-        mBtnToggleEditor.setBackgroundResource(R.drawable.background_control_editor);
-        mBtnToggleEditor.setAlpha(0.35f);
-        mBtnToggleEditor.setTranslationZ(30f);
-        mBtnToggleEditor.setOnClickListener(v -> {
-            if (!mModifiable) {
-                setModifiable(true);
-                if (mMenuDialog != null) mMenuDialog.show();
-            } else {
-                if (mMenuDialog != null) {
-                    if (mMenuDialog.isShowing()) mMenuDialog.hide();
-                    else mMenuDialog.show();
-                }
-            }
-        });
-        addView(mBtnToggleEditor);
-
-        // Editor components
-        mActionRow = new ActionRow(getContext());
-        addView(mActionRow);
-
-        mHandleView = new ControlHandleView(getContext());
-        addView(mHandleView);
-
-        mControlPopup = new EditControlPopup(getContext(), this);
         mMenuDialog = new ControlMenuDialog(this, this);
     }
 
@@ -133,8 +90,6 @@ public class ControlLayout extends FrameLayout {
         for (ControlDrawerData drawer : mLayout.mDrawerDataList) {
             addDrawerView(drawer);
         }
-
-        mBtnToggleEditor.bringToFront();
     }
 
     private void removeAllButtons() {
@@ -212,14 +167,7 @@ public class ControlLayout extends FrameLayout {
     public void setModifiable(boolean isModifiable) {
         this.mModifiable = isModifiable;
         if (!isModifiable) {
-            if (mControlPopup != null) mControlPopup.hide();
-            if (mActionRow != null) mActionRow.hide();
-            if (mHandleView != null) mHandleView.hide();
             if (mMenuDialog != null) mMenuDialog.hide();
-            mBtnToggleEditor.setAlpha(0.35f);
-        } else {
-            mBtnToggleEditor.setAlpha(1.0f);
-            setControlVisible(true);
         }
     }
 
@@ -240,22 +188,18 @@ public class ControlLayout extends FrameLayout {
     }
 
     public void editControlButton(ControlInterface button) {
-        if (mControlPopup != null) {
-            mControlPopup.setCurrentlyEditedButton(button);
-            mControlPopup.appear(true);
-            button.loadEditValues(mControlPopup);
-        }
-
-        if (mHandleView != null) {
-            mHandleView.setControlButton(button);
-        }
+        // editing is handled by ControlProfileEditorActivity
     }
 
-    public void adaptPanelPosition() {
-        if (mControlPopup != null) {
-            mControlPopup.adaptPanelPosition();
-        }
+    public void setActionRow(ActionRow actionRow) {
+        this.mActionRow = actionRow;
     }
+
+    public ActionRow getActionRow() {
+        return mActionRow;
+    }
+
+    public void adaptPanelPosition() {}
 
     public List<ControlInterface> getButtonChildren() {
         List<ControlInterface> list = new ArrayList<>();

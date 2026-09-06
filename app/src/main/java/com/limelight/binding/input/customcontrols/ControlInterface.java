@@ -175,8 +175,8 @@ public interface ControlInterface extends View.OnLongClickListener {
         ControlLayout parent = getControlLayoutParent();
         if (parent != null && parent.getModifiable()) {
             parent.editControlButton(this);
-            if (parent.mActionRow != null) {
-                parent.mActionRow.setFollowedButton(this);
+            if (parent.getActionRow() != null) {
+                parent.getActionRow().setFollowedButton(this);
             }
         }
         return true;
