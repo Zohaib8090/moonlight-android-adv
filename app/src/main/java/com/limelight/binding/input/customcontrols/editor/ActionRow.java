@@ -46,7 +46,7 @@ public class ActionRow extends LinearLayout {
         setOrientation(HORIZONTAL);
         setGravity(Gravity.CENTER_VERTICAL);
         setBackgroundResource(R.drawable.background_control_editor);
-        int pad = (int) (6 * getResources().getDisplayMetrics().density);
+        int pad = (int) (4 * getResources().getDisplayMetrics().density);
         setPadding(pad, pad, pad, pad);
         setTranslationZ(25f);
         setVisibility(GONE);
@@ -85,10 +85,10 @@ public class ActionRow extends LinearLayout {
 
     private ImageView createActionButton(int resId, OnClickListener listener) {
         ImageView iv = new ImageView(getContext());
-        int size = (int) (32 * getResources().getDisplayMetrics().density);
-        int pad = (int) (4 * getResources().getDisplayMetrics().density);
+        int size = (int) (24 * getResources().getDisplayMetrics().density);
+        int pad = (int) (3 * getResources().getDisplayMetrics().density);
         LayoutParams lp = new LayoutParams(size, size);
-        lp.setMargins(4, 0, 4, 0);
+        lp.setMargins(2, 0, 2, 0);
         iv.setLayoutParams(lp);
         iv.setPadding(pad, pad, pad, pad);
         iv.setImageDrawable(getResources().getDrawable(resId));

@@ -47,14 +47,18 @@ public class EditControlPopup {
         this.context = context;
         this.rootView = LayoutInflater.from(context).inflate(R.layout.dialog_control_button_setting, parent, false);
 
-        // Anchor the popup to the left side, sized to its content. Without
+        // Anchor the popup to the right side, sized to its content. Without
         // explicit LayoutParams the FrameLayout default (MATCH_PARENT x2) makes
         // it fill the whole screen and block the layout underneath.
+        int widthPx = (int) (300 * context.getResources().getDisplayMetrics().density);
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
-                (int) (320 * context.getResources().getDisplayMetrics().density),
+                widthPx,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
-        lp.gravity = Gravity.START | Gravity.CENTER_VERTICAL;
+        lp.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+        // Keep the popup off the very edge so the canvas underneath stays visible.
+        int edgeMargin = (int) (8 * context.getResources().getDisplayMetrics().density);
+        lp.setMargins(edgeMargin, edgeMargin, edgeMargin, edgeMargin);
         parent.addView(rootView, lp);
 
         keyboardDialog = new KeyboardPickerDialog(context);
