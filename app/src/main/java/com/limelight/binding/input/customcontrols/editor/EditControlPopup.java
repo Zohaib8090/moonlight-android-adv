@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -44,7 +46,16 @@ public class EditControlPopup {
     public EditControlPopup(Context context, ViewGroup parent) {
         this.context = context;
         this.rootView = LayoutInflater.from(context).inflate(R.layout.dialog_control_button_setting, parent, false);
-        parent.addView(rootView);
+
+        // Anchor the popup to the left side, sized to its content. Without
+        // explicit LayoutParams the FrameLayout default (MATCH_PARENT x2) makes
+        // it fill the whole screen and block the layout underneath.
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                (int) (320 * context.getResources().getDisplayMetrics().density),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        lp.gravity = Gravity.START | Gravity.CENTER_VERTICAL;
+        parent.addView(rootView, lp);
 
         keyboardDialog = new KeyboardPickerDialog(context);
 
@@ -104,14 +115,21 @@ public class EditControlPopup {
             public void afterTextChanged(Editable s) {
                 if (isUpdatingUi || currentButton == null) return;
                 try {
-                    float w = Float.parseFloat(editSizeX.getText().toString());
-                    float h = Float.parseFloat(editSizeY.getText().toString());
-                    if (w > 10 && h > 10) {
-                        currentButton.getProperties().setWidthDp(w);
-                        currentButton.getProperties().setHeightDp(h);
-                        currentButton.regenerateDynamicCoordinates();
-                    }
-                } catch (Exception ignored) {}
+                    float w = currentButton.getProperties().getWidthDp();
+                    float h = currentButton.getProperties().getHeightDp();
+                    
+                    try { w = Float.parseFloat(editSizeX.getText().toString()); } catch (NumberFormatException ignored) {}
+                    try { h = Float.parseFloat(editSizeY.getText().toString()); } catch (NumberFormatException ignored) {}
+                    
+                    if (w > 10) currentButton.getProperties().setWidthDp(w);
+                    if (h > 10) currentButton.getProperties().setHeightDp(h);
+                    
+                    currentButton.regenerateDynamicCoordinates();
+                    currentButton.getControlView().requestLayout();
+                    currentButton.getControlView().invalidate();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         };
         editSizeX.addTextChangedListener(sizeWatcher);

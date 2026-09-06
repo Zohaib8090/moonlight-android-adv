@@ -76,8 +76,12 @@ public class KeyboardPickerDialog extends Dialog {
             DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
             int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, dm);
             WindowManager.LayoutParams params = window.getAttributes();
-            params.width = dm.widthPixels - (margin * 2);
-            params.height = dm.heightPixels - (margin * 2);
+            // Cap dialog size so it fits on a phone screen; the inner keyboard is a
+            // HorizontalScrollView so it can scroll sideways when its content is wider.
+            int maxWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 360, dm);
+            int maxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 520, dm);
+            params.width = Math.min(dm.widthPixels - (margin * 2), maxWidth);
+            params.height = Math.min(dm.heightPixels - (margin * 2), maxHeight);
             params.gravity = Gravity.CENTER;
             window.setAttributes(params);
         }
