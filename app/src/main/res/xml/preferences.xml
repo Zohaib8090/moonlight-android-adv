@@ -130,6 +130,11 @@
     <PreferenceCategory android:title="@string/category_input_settings"
         android:key="category_input_settings">
         <CheckBoxPreference
+            android:key="checkbox_custom_keyboard_controls"
+            android:title="@string/title_checkbox_custom_keyboard_controls"
+            android:summary="@string/summary_checkbox_custom_keyboard_controls"
+            android:defaultValue="false" />
+        <CheckBoxPreference
             android:key="checkbox_touchscreen_trackpad"
             android:title="@string/title_checkbox_touchscreen_trackpad"
             android:summary="@string/summary_checkbox_touchscreen_trackpad"
@@ -191,6 +196,11 @@
             android:positiveButtonText="@string/yes"
             android:negativeButtonText="@string/no"
             />
+        <com.limelight.preferences.EditControlsPreference
+            android:key="pref_edit_controls_layout"
+            android:title="Edit Keyboard Control Layout"
+            android:summary="Add, move and configure on-screen buttons"
+            android:dependency="checkbox_custom_keyboard_controls" />
 
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/category_host_settings">

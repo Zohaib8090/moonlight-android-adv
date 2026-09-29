@@ -509,15 +509,20 @@ public class Game extends Activity implements SurfaceHolder.Callback,
 
         if (prefConfig.onscreenController) {
             FrameLayout parentLayout = (FrameLayout) streamView.getParent();
-            customControlLayout = new ControlLayout(this);
-            customControlLayout.setStreamSurface(streamView);
-            MoonlightControlBridge bridge = new MoonlightControlBridge(this, conn, controllerHandler);
-            customControlLayout.setBridge(bridge);
-            customControlLayout.loadLayoutFromPreferences();
-            parentLayout.addView(customControlLayout, new FrameLayout.LayoutParams(
-                    FrameLayout.LayoutParams.MATCH_PARENT,
-                    FrameLayout.LayoutParams.MATCH_PARENT
-            ));
+            if (prefConfig.customKeyboardControls) {
+                customControlLayout = new ControlLayout(this);
+                customControlLayout.setStreamSurface(streamView);
+                MoonlightControlBridge bridge = new MoonlightControlBridge(this, conn, controllerHandler);
+                customControlLayout.setBridge(bridge);
+                customControlLayout.loadLayoutFromPreferences();
+                parentLayout.addView(customControlLayout, new FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT
+                ));
+            } else {
+                virtualController = new com.limelight.binding.input.virtual_controller.VirtualController(controllerHandler, parentLayout, this);
+                com.limelight.binding.input.virtual_controller.VirtualControllerConfigurationLoader.loadFromPreferences(virtualController, this);
+            }
         }
 
         if (prefConfig.usbDriver) {
